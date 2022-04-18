@@ -1,5 +1,5 @@
 const JobApplication = require("../models/JobApplication");
-const Job = require("../models/job");
+const Job = require("../models/Job");
 
 exports.postJobApplication = (req, res) => {
   req.body.resume = req.file.originalname;

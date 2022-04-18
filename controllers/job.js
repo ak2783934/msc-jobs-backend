@@ -1,4 +1,4 @@
-const Job = require("../models/job");
+const Job = require("../models/Job");
 
 exports.postJob = (req, res) => {
   req.body.attachments = req.file.originalname;
