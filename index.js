@@ -27,7 +27,6 @@ mongoose.connection.on("connected", () => {
   bucket = new mongoose.mongo.GridFSBucket(db, {
     bucketName: "newBucket",
   });
-  // console.log(bucket);
 });
 
 const PORT = process.env.PORT || 8080;
