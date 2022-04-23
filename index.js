@@ -55,7 +55,7 @@ const upload = multer({
   storage,
 });
 
-app.get("/fileinfo/:filename", (req, res) => {
+app.get("/api/fileinfo/:filename", (req, res) => {
   const file = bucket
     .find({
       filename: req.params.filename,

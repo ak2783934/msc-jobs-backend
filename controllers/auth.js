@@ -42,7 +42,7 @@ exports.signin = (req, res) => {
   }
   User.findOne({ emailId }, (err, user) => {
     if (err || !user) {
-      return res.status(400).json({ error: "user is not registed " });
+      return res.status(404).json({ error: "Email Id is not registered!" });
     }
 
     user.comparePassword(password, function (matchError, isMatch) {
@@ -50,24 +50,25 @@ exports.signin = (req, res) => {
         res.status(404).json({
           error: "Password didn't match",
         });
+        return;
       } else if (!isMatch) {
         res.status(404).json({
           error: "Password didn't match",
         });
+        return;
       } else {
-        res.status(200).json({
-          msg: "Login Success",
-        });
+        //CREATE A TOKEN
+        const token = jwt.sign({ _id: user._id }, process.env.SECRET);
+        //PUT THE TOKEN INTO COOKIES
+        res.cookie("token", token, { expire: new Date() + 9999 });
+        //send response to front-end
+        const { _id, nameOfOrg, emailId, role } = user;
+        res
+          .status(200)
+          .json({ token, user: { _id, nameOfOrg, emailId, role } });
+        return;
       }
     });
-
-    //CREATE A TOKEN
-    const token = jwt.sign({ _id: user._id }, process.env.SECRET);
-    //PUT THE TOKEN INTO COOKIES
-    res.cookie("token", token, { expire: new Date() + 9999 });
-    //send response to front-end
-    const { _id, nameOfOrg, emailId, role } = user;
-    return res.json({ token, user: { _id, nameOfOrg, emailId, role } });
   });
 };
 
@@ -87,6 +88,7 @@ exports.isSignedIn = expressJwt({
 
 //custom middlewares
 exports.isAuthenticated = (req, res, next) => {
+  console.log("Bhai isAuthentication me hu");
   console.log(req);
   let checker = req.profile && req.auth && req.profile._id == req.auth._id;
   console.log(req.profile._id == req.auth._id);

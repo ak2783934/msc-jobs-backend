@@ -1,6 +1,8 @@
 const Job = require("../models/Job");
 
 exports.postJob = (req, res) => {
+  console.log(req.body);
+  console.log(req.file);
   req.body.attachments = req.file.originalname;
   req.body.user = req.profile;
   const job = new Job(req.body);
@@ -14,7 +16,34 @@ exports.postJob = (req, res) => {
   });
 };
 
+exports.getAllJobs = (req, res) => {
+  console.log(req);
+
+  Job.find().exec((err, jobs) => {
+    if (err || !jobs) {
+      return res.status(400).json({ error: "No jobs available in DB" });
+    }
+    res.json({ jobs });
+  });
+};
+
 exports.getJobById = (req, res) => {
+  console.log(req);
+  const jobId = req.params.jobId;
+  Job.findById(jobId).exec((err, job) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Job not found in DB",
+      });
+    }
+    if (!job) {
+      res.json({ error: "no jobs with given id" });
+    }
+    res.json({ job });
+  });
+};
+
+exports.getJobByIdPublic = (req, res) => {
   console.log(req);
   const jobId = req.params.jobId;
   Job.findById(jobId).exec((err, job) => {

@@ -9,6 +9,8 @@ const {
   getAllJobsByUserId,
   deleteJob,
   updateJob,
+  getAllJobs,
+  getJobByIdPublic,
 } = require("../controllers/job");
 
 const { getUserById } = require("../controllers/user");
@@ -32,7 +34,9 @@ router.post(
   uploadFile.single("attachments"),
   postJob
 );
+router.get("/publicjobs/:jobId", getJobByIdPublic);
 router.get("/job/:jobId/:userId", isSignedIn, isAuthenticated, getJobById);
+router.get("/jobs", getAllJobs);
 router.get("/jobs/:userId", isSignedIn, isAuthenticated, getAllJobsByUserId);
 router.delete("/job/:jobId/:userId", isSignedIn, isAuthenticated, deleteJob);
 router.put("/job/:jobId", isSignedIn, isAuthenticated, updateJob);
