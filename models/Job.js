@@ -33,12 +33,7 @@ const JobSchema = mongoose.Schema(
     },
     jobType2: {
       type: String,
-      enum: [
-        "state government",
-        "central government",
-        "teaching job",
-        "non-teaching job",
-      ],
+      required: true,
     },
     lastDateOfApplication: {
       type: String,
@@ -63,7 +58,6 @@ const JobSchema = mongoose.Schema(
     attachments: {
       type: String,
       trim: true,
-      required: true,
     },
     user: {
       type: ObjectId,
