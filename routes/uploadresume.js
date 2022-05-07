@@ -1,6 +1,6 @@
 const express = requier("express");
 const router = express.Router();
-
+const { uploadFile } = require("../Util/upload");
 const {
   postUploadResume,
   getAllUploadResumes,
@@ -12,7 +12,11 @@ const { isSignedIn, isAuthenticated } = require("../controllers/auth");
 
 router.param("userId", getUserById);
 
-router.post("/uploadresume/create", postUploadResume);
+router.post(
+  "/uploadresume/create",
+  uploadFile.single("resume"),
+  postUploadResume
+);
 router.get(
   "/uploadresume/getall/:userId",
   isSignedIn,
