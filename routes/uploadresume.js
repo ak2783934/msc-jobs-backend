@@ -2,30 +2,28 @@ const express = requier("express");
 const router = express.Router();
 
 const {
-  createFreeJobAlerts,
-  getAllFreeJobAlerts,
-  deleteFreeJobAlert,
-} = require("../controllers/freejobalerts");
+  postUploadResume,
+  getAllUploadResumes,
+  deleteUploadResume,
+} = require("../controllers/uploadresume");
 
 const { getUserById } = require("../controllers/user");
 const { isSignedIn, isAuthenticated } = require("../controllers/auth");
 
 router.param("userId", getUserById);
 
-router.post("/freejobalert/create", createFreeJobAlerts);
-
+router.post("/uploadresume/create", postUploadResume);
 router.get(
-  "/freejobalert/getall/:userId",
+  "/uploadresume/getall/:userId",
   isSignedIn,
   isAuthenticated,
-  getAllFreeJobAlerts
+  getAllUploadResumes
 );
-
 router.delete(
-  "/freejobalert/delete/:userId/:noticeId",
+  "/uploadresume/delete/:userId/:uploadResumeId",
   isSignedIn,
   isAuthenticated,
-  deleteFreeJobAlert
+  deleteUploadResume
 );
 
 module.exports = router;
