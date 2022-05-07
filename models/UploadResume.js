@@ -5,13 +5,13 @@ const UploadResumeSchema = mongoose.Schema(
     name: {
       type: String,
       required: true,
-      maxlenght: 32,
+      maxlength: 32,
       trim: true,
     },
     contactNo: {
       type: String,
       required: true,
-      maxlenght: 10,
+      maxlength: 10,
       trim: true,
     },
     emailId: {

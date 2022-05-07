@@ -5,7 +5,7 @@ const FreeJobAlertSchema = mongoose.Schema(
     name: {
       type: String,
       required: true,
-      maxlenght: 32,
+      maxlength: 32,
       trim: true,
     },
     emailId: {
@@ -15,7 +15,7 @@ const FreeJobAlertSchema = mongoose.Schema(
     },
     jobType: {
       type: String,
-      enum: ["Teaching Job", "Non Teaching Job"],
+      required: true,
     },
   },
   { timestamps: true }

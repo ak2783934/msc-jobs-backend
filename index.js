@@ -155,11 +155,13 @@ const userRoute = require("./routes/user");
 const jobRoute = require("./routes/job");
 const jobApplicationRoute = require("./routes/jobapplication");
 const marqueeMsgRoute = require("./routes/marqueemsg");
+const noticeRoute = require("./routes/notice");
 app.use("/api", authRoute);
 app.use("/api", userRoute);
 app.use("/api", jobRoute);
 app.use("/api", jobApplicationRoute);
 app.use("/api", marqueeMsgRoute);
+app.use("/api", noticeRoute);
 
 app.listen(PORT, () => {
   console.log(`Test app listening on port ${PORT}`);
