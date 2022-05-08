@@ -1,4 +1,4 @@
-const express = requier("express");
+const express = require("express");
 const router = express.Router();
 const { uploadFile } = require("../Util/upload");
 const {

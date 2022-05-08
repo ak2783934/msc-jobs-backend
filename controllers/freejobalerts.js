@@ -23,6 +23,7 @@ exports.getAllFreeJobAlerts = (req, res) => {
 
 exports.deleteFreeJobAlert = (req, res) => {
   const freeJobAlertId = req.params.freeJobAlertId;
+  console.log(freeJobAlertId);
   FreeJobAlerts.deleteOne({ _id: freeJobAlertId }).exec((err, freeJobAlert) => {
     if (err || !freeJobAlert) {
       return res.json(400).json({

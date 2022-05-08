@@ -1,4 +1,4 @@
-const express = requier("express");
+const express = require("express");
 const router = express.Router();
 
 const {
@@ -22,7 +22,7 @@ router.get(
 );
 
 router.delete(
-  "/freejobalert/delete/:userId/:noticeId",
+  "/freejobalert/delete/:userId/:freeJobAlertId",
   isSignedIn,
   isAuthenticated,
   deleteFreeJobAlert

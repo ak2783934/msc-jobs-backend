@@ -3,6 +3,7 @@ const UploadResume = require("../models/UploadResume");
 exports.postUploadResume = (req, res) => {
   req.body.resume = req.file.originalname;
   const uploadResume = new UploadResume(req.body);
+  console.log(uploadResume);
   uploadResume.save((err, uploadResume) => {
     if (err || !uploadResume) {
       return res
