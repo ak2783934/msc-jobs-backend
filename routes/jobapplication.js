@@ -39,7 +39,7 @@ router.get(
   getAllJobApplicationsForJobId
 );
 router.put(
-  "/jobapplication/:jobApplicationId/userId",
+  "/jobapplication/:jobApplicationId/:userId",
   isSignedIn,
   isAuthenticated,
   updateJobApplication

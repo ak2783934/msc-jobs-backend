@@ -88,7 +88,17 @@ exports.getAllJobApplicationsForJobId = (req, res) => {
 
 exports.updateJobApplication = (req, res) => {
   console.log(req);
-  res.json("updateJobApplication");
+  JobApplication.findOneAndUpdate(
+    { _id: req.params.jobApplicationId },
+    req.body
+  ).exec((err, jobApplication) => {
+    if (err || !jobApplication) {
+      return res
+        .status(400)
+        .json({ error: "No job application with given id" });
+    }
+    return res.send({ jobApplication });
+  });
 };
 
 exports.deleteJobApplication = (req, res) => {
