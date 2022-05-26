@@ -7,6 +7,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { GridFsStorage } = require("multer-gridfs-storage");
 const multer = require("multer");
+const axios = require("axios");
 
 const app = express();
 const mongouri = process.env.DATABASE || `mongodb://localhost:27017/mscjobs`;
@@ -147,6 +148,26 @@ app.post("/sendmsg", (req, res) => {
       res.send(error);
     }
   );
+});
+
+//testing route
+app.get("/sendsms", (req, res) => {
+  const url = `https://api.textlocal.in/send?apikey=MzA2NDZkNTMzMDRiMzgzNTQxNGM0NjU2NTkzNjM1MzQ=&numbers=${encodeURIComponent(
+    "7654217440,6203770683"
+  )}&sender=TXTLCL&message=${encodeURIComponent(
+    "Hi there, this is my first text message"
+  )}`;
+  console.log(url);
+  axios
+    .get(url)
+    .then((response) => {
+      console.log(response.data);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
 });
 
 //my routes

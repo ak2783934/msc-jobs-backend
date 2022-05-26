@@ -97,3 +97,18 @@ exports.updateJob = (req, res) => {
   console.log("update job");
   res.send("update job");
 };
+
+exports.searchJob = (req, res) => {
+  let param = req.query.searchVal;
+  console.log(param);
+  Job.find({ $text: { $search: param } })
+    .limit(10)
+    .exec((err, jobs) => {
+      if (err) {
+        return res.status(400).json({
+          error: "No Job found",
+        });
+      }
+      res.json(jobs);
+    });
+};

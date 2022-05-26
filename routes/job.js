@@ -11,6 +11,7 @@ const {
   updateJob,
   getAllJobs,
   getJobByIdPublic,
+  searchJob,
 } = require("../controllers/job");
 
 const { getUserById } = require("../controllers/user");
@@ -40,5 +41,6 @@ router.get("/jobs", getAllJobs);
 router.get("/jobs/:userId", isSignedIn, isAuthenticated, getAllJobsByUserId);
 router.delete("/job/:jobId/:userId", isSignedIn, isAuthenticated, deleteJob);
 router.put("/job/:jobId", isSignedIn, isAuthenticated, updateJob);
+router.get("/jobsearch", searchJob);
 
 module.exports = router;

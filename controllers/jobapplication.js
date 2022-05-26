@@ -37,7 +37,7 @@ exports.postJobApplication = (req, res) => {
           },
         ],
         subject: "Job Applied Successfully",
-        htmlContent: `<html><body><p>This email confrims yours application for job Id: ${jobApplication.job._id}</p> <div>Name: ${jobApplication.nameOfCandidate}</div><div>Phone no: ${jobApplication.contactNo}</div> <div>We are glad to have you with us</div><div>Please visit us at <a href="www.mscjobs.in">www.mscjobs.in</a> </div></body></html>`,
+        htmlContent: `<html><body><p>This email confirms yours application for job Id: ${jobApplication.job._id}</p> <div>Name: ${jobApplication.nameOfCandidate}</div><div>Phone no: ${jobApplication.contactNo}</div> <div>We are glad to have you with us</div><div>Please visit us at <a href="www.mscjobs.in">www.mscjobs.in</a> </div></body></html>`,
         sender: { name: "Avinash Kumar", email: "ak2783934@gmail.com" },
       };
 
