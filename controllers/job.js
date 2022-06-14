@@ -3,7 +3,7 @@ const Job = require("../models/Job");
 exports.postJob = (req, res) => {
   console.log(req.body);
   console.log(req.file);
-  req.body.attachments = req.file.originalname;
+  req.body.attachments = req.file?.originalname;
   req.body.user = req.profile;
   const job = new Job(req.body);
   job.save((err, job) => {

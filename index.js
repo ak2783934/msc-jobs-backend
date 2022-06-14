@@ -152,8 +152,8 @@ app.post("/sendmsg", (req, res) => {
 
 //testing route
 app.get("/sendsms", (req, res) => {
-  const url = `https://api.textlocal.in/send?apikey=MzA2NDZkNTMzMDRiMzgzNTQxNGM0NjU2NTkzNjM1MzQ=&numbers=${encodeURIComponent(
-    "7654217440,6203770683"
+  const url = `https://api.textlocal.in/send/?apikey=MzA2NDZkNTMzMDRiMzgzNTQxNGM0NjU2NTkzNjM1MzQ=&numbers=${encodeURIComponent(
+    "9801179953"
   )}&sender=TXTLCL&message=${encodeURIComponent(
     "Hi there, this is my first text message"
   )}`;

@@ -13,14 +13,14 @@ exports.signup = (req, res) => {
   }
   const user = new User(req.body);
   // console.log("User inside auth");
-  // console.log(user);
-  user.save((err, user) => {
-    if (err) {
+  console.log(user);
+  user.save((error, user) => {
+    if (error || !user) {
       return res.status(400).json({
-        err: "Not able to save user in DB",
+        error: error,
       });
     }
-    res.json({
+    res.status(200).json({
       name: user.nameOfOrg,
       email: user.emailId,
       id: user._id,
