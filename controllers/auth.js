@@ -44,7 +44,9 @@ exports.signin = (req, res) => {
     if (err || !user) {
       return res.status(404).json({ error: "Email Id is not registered!" });
     }
-
+    if (user.isVerified === false) {
+      return res.status(404).json({ error: "You are not verified" });
+    }
     user.comparePassword(password, function (matchError, isMatch) {
       if (matchError) {
         res.status(404).json({
