@@ -179,6 +179,7 @@ const marqueeMsgRoute = require("./routes/marqueemsg");
 const noticeRoute = require("./routes/notice");
 const uploadResumeRoute = require("./routes/uploadresume");
 const freeJobAlertsRoute = require("./routes/freejobalerts");
+const careerTipsRoute = require("./routes/careertips");
 app.use("/api", authRoute);
 app.use("/api", userRoute);
 app.use("/api", jobRoute);
@@ -187,6 +188,7 @@ app.use("/api", marqueeMsgRoute);
 app.use("/api", noticeRoute);
 app.use("/api", uploadResumeRoute);
 app.use("/api", freeJobAlertsRoute);
+app.use("/api", careerTipsRoute);
 
 app.listen(PORT, () => {
   console.log(`Test app listening on port ${PORT}`);
