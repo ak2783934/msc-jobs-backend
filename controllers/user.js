@@ -1,4 +1,5 @@
 const User = require("../models/User.js");
+const { sendCustomEmail } = require("../Util/sendEmail");
 
 exports.getUserById = (req, res, next, id) => {
   User.findById(id).exec((err, user) => {
@@ -27,6 +28,15 @@ exports.validateNewUser = (req, res) => {
       if (err || !user) {
         return res.status(400).json({ error: "No user updated" });
       }
+      const userList = [
+        {
+          email: user.emailId,
+          name: user.founder,
+        },
+      ];
+      const subject = "Your account activated";
+      const htmlContent = `<html><body><h2>Welcome to MSC Jobs</h2><p>Your account as an Employer at Mscjobs.in is activated, you can login in to https://mscjobs-admin-login.vercel.app/ and create jobs for your company</p><p>Thanks and Regards</p></body></html>`;
+      sendCustomEmail(userList, subject, htmlContent);
       return res.send({ user });
     }
   );
